@@ -1,16 +1,20 @@
-CC=g++
-CFLAGS=-c -Wall
-LDFLAGS=
-SOURCES=main.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=main
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall
+GTEST_LIBS = -lgtest -lgtest_main -pthread
 
-all: $(SOURCES) $(EXECUTABLE)
+all: main test
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+main: main.o
+    $(CXX) $(CXXFLAGS) -o main main.o
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+test: test.o main.o
+    $(CXX) $(CXXFLAGS) -o test test.o main.o $(GTEST_LIBS)
+
+main.o: main.cpp
+    $(CXX) $(CXXFLAGS) -c main.cpp
+
+test.o: test.cpp
+    $(CXX) $(CXXFLAGS) -c test.cpp
+
 clean:
-	rm -rf *.o $(EXECUTABLE)
+    rm -f *.o main test

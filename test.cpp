@@ -1,10 +1,15 @@
+// test.cpp
 #include <gtest/gtest.h>
+#include "main.cpp"
 
-
-TEST(Сheck,check){
-    EXPECT_TRUE (1==1);
+TEST(AddTest, PositiveNumbers) {
+    EXPECT_EQ(add(2, 3), 5);
 }
 
-TEST (check1,Check1){
-    EXPECT_FALSE (1==3);
+TEST(AddTest, NegativeNumbers) {
+    EXPECT_EQ(add(-1, -1), -2);
+}
+
+TEST(AddTest, MixedNumbers) {
+    EXPECT_EQ(add(-1, 1), 0);
 }

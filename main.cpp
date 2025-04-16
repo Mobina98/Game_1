@@ -1,10 +1,12 @@
+// main.cpp
 #include <iostream>
 
-int main (){
+int add(int a, int b) {
+    return a + b;
+}
 
-    std::cout<< "Hello world \n";
-
-
-    std::cout << "Just check how i can work with CI";
-    std::cout << "Check how Work PR";
+int main() {
+    int result = add(2, 3);
+    std::cout << "Result: " << result << std::endl;
+    return 0;
 }
